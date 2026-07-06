@@ -8,17 +8,49 @@ import '../styles/global.css';
 
 <html lang={SITE_LANG}>
   <head>
-    <BaseHead title={`소개 · ${SITE_TITLE}`} description="블로그 소개 페이지" />
+    <BaseHead title={`작업 일지 · ${SITE_TITLE}`} description="지금까지의 작업을 기록하는 작업 일지입니다." />
   </head>
   <body>
     <Header />
     <main>
-      <h1>소개</h1>
-      <p>안녕하세요. 이 블로그에 대한 소개를 여기에 적어주세요.</p>
+      <h1>작업 일지</h1>
       <p>
-        관심사, 이 블로그를 시작한 이유, 연락처 등을 자유롭게 채워 넣으면 됩니다.
+        이 블로그는 제가 진행한 작업을 하나씩 남기는 <strong>작업 일지</strong>입니다.
+        무엇을 만들었는지, 어떤 과정과 생각을 거쳤는지 기록해 둡니다.
       </p>
+
+      <h2>작업 목록</h2>
+      <ul class="works">
+        <li>
+          <span class="no">01</span>
+          <span class="title">부처님의 제자들 1, 2</span>
+        </li>
+      </ul>
     </main>
     <Footer />
   </body>
 </html>
+
+<style>
+  .works {
+    list-style: none;
+    padding: 0;
+    margin: 1em 0 0;
+  }
+  .works li {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgb(var(--gray-light));
+  }
+  .works .no {
+    font-family: ui-monospace, monospace;
+    color: var(--accent);
+    font-size: 0.95rem;
+  }
+  .works .title {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+</style>
