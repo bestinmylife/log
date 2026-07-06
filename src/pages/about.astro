@@ -1,0 +1,24 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_LANG } from '../consts';
+import '../styles/global.css';
+---
+
+<html lang={SITE_LANG}>
+  <head>
+    <BaseHead title={`소개 · ${SITE_TITLE}`} description="블로그 소개 페이지" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>소개</h1>
+      <p>안녕하세요. 이 블로그에 대한 소개를 여기에 적어주세요.</p>
+      <p>
+        관심사, 이 블로그를 시작한 이유, 연락처 등을 자유롭게 채워 넣으면 됩니다.
+      </p>
+    </main>
+    <Footer />
+  </body>
+</html>

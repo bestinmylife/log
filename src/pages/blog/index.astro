@@ -1,0 +1,64 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, SITE_LANG } from '../../consts';
+import { getCollection } from 'astro:content';
+import '../../styles/global.css';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<html lang={SITE_LANG}>
+  <head>
+    <BaseHead title={`글 · ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>전체 글</h1>
+      <ul class="post-list">
+        {
+          posts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+              <p class="desc">{post.data.description}</p>
+              <div class="meta">
+                <FormattedDate date={post.data.pubDate} />
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .post-list {
+    list-style: none;
+    padding: 0;
+  }
+  .post-list li {
+    margin-bottom: 2em;
+    padding-bottom: 1.5em;
+    border-bottom: 1px solid rgb(var(--gray-light));
+  }
+  .post-list a {
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .desc {
+    margin: 0.3em 0;
+    color: rgb(var(--gray-dark));
+  }
+  .meta {
+    color: rgb(var(--gray));
+    font-size: 0.9em;
+  }
+</style>

@@ -1,0 +1,42 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<header>
+  <nav>
+    <a href="/" class="site-title">{SITE_TITLE}</a>
+    <div class="links">
+      <HeaderLink href="/">홈</HeaderLink>
+      <HeaderLink href="/blog">글</HeaderLink>
+      <HeaderLink href="/about">소개</HeaderLink>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    margin: 0;
+    padding: 0 1em;
+    background: white;
+    box-shadow: 0 2px 8px rgba(var(--gray), 15%);
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 720px;
+    margin: 0 auto;
+    height: 60px;
+  }
+  .site-title {
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--black);
+    font-size: 1.15rem;
+  }
+  .links {
+    display: flex;
+    gap: 1em;
+  }
+</style>
