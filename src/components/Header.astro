@@ -18,8 +18,8 @@ import { SITE_TITLE } from '../consts';
   header {
     margin: 0;
     padding: 0 1em;
-    background: white;
-    box-shadow: 0 2px 8px rgba(var(--gray), 15%);
+    background: var(--bg);
+    border-bottom: 1px solid rgb(var(--gray-light));
   }
   nav {
     display: flex;
@@ -27,13 +27,15 @@ import { SITE_TITLE } from '../consts';
     justify-content: space-between;
     max-width: 720px;
     margin: 0 auto;
-    height: 60px;
+    height: 64px;
   }
   .site-title {
-    font-weight: bold;
+    font-family: var(--font-serif);
+    font-weight: 600;
     text-decoration: none;
-    color: var(--black);
-    font-size: 1.15rem;
+    color: rgb(var(--black));
+    font-size: 1.2rem;
+    letter-spacing: -0.01em;
   }
   .links {
     display: flex;

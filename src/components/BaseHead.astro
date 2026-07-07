@@ -17,6 +17,14 @@ const { title, description, image = '/blog-placeholder.png' } = Astro.props;
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
 
+<!-- 폰트: 제목 명조(Noto Serif KR) + 본문 고딕(Noto Sans KR) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@500;600;700&display=swap"
+/>
+
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Primary Meta Tags -->
