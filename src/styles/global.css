@@ -161,3 +161,13 @@ hr {
     display: block;
   }
 }
+
+/* 위키링크 */
+.reader-body .ch-body a.wikilink,
+.ch-body a.wikilink { text-decoration: none; border-bottom: 1px solid rgba(var(--gray), 0.4); }
+.ch-body a.wikilink:hover { border-bottom-color: var(--accent); }
+.wikilink-missing {
+  color: rgb(var(--gray));
+  border-bottom: 1px dashed rgba(var(--gray), 0.6);
+  cursor: help;
+}

@@ -1,0 +1,40 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Search from 'astro-pagefind/components/Search';
+import { SITE_TITLE, SITE_LANG } from '../consts';
+import '../styles/global.css';
+---
+
+<html lang={SITE_LANG}>
+  <head>
+    <BaseHead title={`검색 · ${SITE_TITLE}`} description="사이트 전체에서 인물·용어·내용을 검색합니다." />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>검색</h1>
+      <p>인물, 용어, 본문 어디든 검색해 보세요.</p>
+      <div class="search-wrap">
+        <Search
+          id="search"
+          className="pagefind-ui"
+          uiOptions={{ showImages: false, showSubResults: true }}
+        />
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .search-wrap { margin-top: 1.5rem; }
+  :global(.pagefind-ui) {
+    --pagefind-ui-primary: var(--accent);
+    --pagefind-ui-text: rgb(var(--gray-dark));
+    --pagefind-ui-background: var(--bg);
+    --pagefind-ui-border: rgb(var(--gray-light));
+    --pagefind-ui-font: var(--font-sans);
+  }
+</style>
