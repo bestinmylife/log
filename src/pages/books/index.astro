@@ -1,0 +1,66 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_TITLE, SITE_LANG } from '../../consts';
+import { getCollection } from 'astro:content';
+import '../../styles/global.css';
+
+const books = (await getCollection('books')).sort((a, b) => a.data.order - b.data.order);
+const chapters = await getCollection('chapters');
+
+function firstChapter(slug) {
+  return chapters
+    .filter((c) => c.id.split('/')[0] === slug)
+    .sort((a, b) => a.data.order - b.data.order)[0];
+}
+---
+
+<html lang={SITE_LANG}>
+  <head>
+    <BaseHead title={`서재 · ${SITE_TITLE}`} description="작업 중인 책 목록" />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>서재</h1>
+      <p>작업 중인 책들입니다. 표지를 누르면 목차와 본문이 열립니다.</p>
+      <ul class="book-list">
+        {
+          books.map((b) => {
+            const fc = firstChapter(b.id);
+            const href = fc ? `/books/${fc.id}/` : '#';
+            return (
+              <li>
+                <a class="bk" href={href}>
+                  <span class="bk-title">{b.data.title}</span>
+                  {b.data.author && <span class="bk-author">{b.data.author}</span>}
+                </a>
+                {b.data.description && <p class="bk-desc">{b.data.description}</p>}
+              </li>
+            );
+          })
+        }
+      </ul>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .book-list { list-style: none; padding: 0; margin-top: 1.5em; }
+  .book-list li {
+    padding: 1.4em 0;
+    border-bottom: 1px solid rgb(var(--gray-light));
+  }
+  .bk { display: flex; align-items: baseline; gap: 12px; text-decoration: none; }
+  .bk-title {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: rgb(var(--black));
+  }
+  .bk:hover .bk-title { color: var(--accent); }
+  .bk-author { font-size: 0.9rem; color: rgb(var(--gray)); }
+  .bk-desc { margin: 0.4em 0 0; color: rgb(var(--gray-dark)); }
+</style>

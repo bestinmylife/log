@@ -1,0 +1,42 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import BookReader from '../../layouts/BookReader.astro';
+
+export async function getStaticPaths() {
+  const all = await getCollection('chapters');
+
+  // 책(폴더)별로 묶고 order로 정렬
+  const byBook = {};
+  for (const ch of all) {
+    const b = ch.id.split('/')[0];
+    (byBook[b] ??= []).push(ch);
+  }
+  for (const b in byBook) {
+    byBook[b].sort((a, z) => a.data.order - z.data.order);
+  }
+
+  return all.map((ch) => {
+    const b = ch.id.split('/')[0];
+    const list = byBook[b];
+    const idx = list.findIndex((x) => x.id === ch.id);
+    return {
+      params: { chapter: ch.id },
+      props: {
+        bookSlug: b,
+        chapters: list,
+        current: ch,
+        prev: idx > 0 ? list[idx - 1] : null,
+        next: idx < list.length - 1 ? list[idx + 1] : null,
+      },
+    };
+  });
+}
+
+const { bookSlug, chapters, current, prev, next } = Astro.props;
+const book = await getEntry('books', bookSlug);
+const { Content } = await render(current);
+---
+
+<BookReader book={book.data} chapters={chapters} current={current} prev={prev} next={next}>
+  <Content />
+</BookReader>

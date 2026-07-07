@@ -1,5 +1,6 @@
 ---
 import HeaderLink from './HeaderLink.astro';
+import ThemeToggle from './ThemeToggle.astro';
 import { SITE_TITLE } from '../consts';
 ---
 
@@ -8,8 +9,10 @@ import { SITE_TITLE } from '../consts';
     <a href="/" class="site-title">{SITE_TITLE}</a>
     <div class="links">
       <HeaderLink href="/">홈</HeaderLink>
-      <HeaderLink href="/blog">글</HeaderLink>
+      <HeaderLink href="/books">서재</HeaderLink>
+      <HeaderLink href="/blog">일지</HeaderLink>
       <HeaderLink href="/about">소개</HeaderLink>
+      <ThemeToggle />
     </div>
   </nav>
 </header>
@@ -39,6 +42,7 @@ import { SITE_TITLE } from '../consts';
   }
   .links {
     display: flex;
-    gap: 1em;
+    align-items: center;
+    gap: 0.9em;
   }
 </style>
