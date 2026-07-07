@@ -116,3 +116,48 @@ hr {
   white-space: nowrap;
   border: 0;
 }
+
+/* 책 리더 — 책다운 조판 (Tufte 감각) */
+.reader-body .ch-body { position: relative; }
+.reader-body .ch-body > p,
+.reader-body .ch-body > h2,
+.reader-body .ch-body > h3,
+.reader-body .ch-body > ul,
+.reader-body .ch-body > ol,
+.reader-body .ch-body > blockquote {
+  max-width: 40em;
+}
+.reader-body .ch-body > p:first-of-type::first-letter {
+  float: left;
+  font-family: var(--font-serif);
+  font-size: 3em;
+  line-height: 0.82;
+  padding: 0.02em 0.12em 0 0;
+  color: var(--accent);
+  font-weight: 600;
+}
+.reader-body .ch-body .sidenote,
+.reader-body .ch-body .marginnote {
+  float: right;
+  clear: right;
+  width: 200px;
+  margin-right: -232px;
+  margin-top: 0.3rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: rgb(var(--gray));
+  font-family: var(--font-sans);
+}
+@media (max-width: 1120px) {
+  .reader-body .ch-body .sidenote,
+  .reader-body .ch-body .marginnote {
+    float: none;
+    width: auto;
+    max-width: 40em;
+    margin: 0.8rem 0;
+    padding: 0.5rem 0 0.5rem 1rem;
+    border-left: 2px solid rgb(var(--gray-light));
+    display: block;
+  }
+}
